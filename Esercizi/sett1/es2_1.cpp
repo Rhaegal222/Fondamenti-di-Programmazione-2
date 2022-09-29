@@ -5,8 +5,6 @@
 #include <cmath>
 using namespace std;
 
-
-
 bool e_primo(int num){
     bool e_primo = true;
     int i_limit = (int)sqrt(num);

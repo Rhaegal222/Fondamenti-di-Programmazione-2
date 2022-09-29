@@ -2,9 +2,7 @@
 
 using namespace std;
 
-
 bool ePrimo(int);
-
 
 int main(){
 

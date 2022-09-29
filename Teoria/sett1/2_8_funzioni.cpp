@@ -25,7 +25,7 @@ int f4(int v1, int v2){} // ok
 */
 
 
-if(cond){  } // questo percorno non include un return, è quindi un errore
+if(cond){  } // questo percorso non include un return, è quindi un errore
 else{ return; }
 
 #endif
@@ -51,8 +51,7 @@ int factVal(int val){
     
 }
 
-
-// esempio passaggio per riferimento
+// esempio passaggio per riferimento (o alias)
 // prendo esattamente la variabile passata
 int factRef(int &val){ 
     int ret = 1;
@@ -61,7 +60,7 @@ int factRef(int &val){
 }
 
 #if 0
-// passaggop per riferimento costante
+// passaggio per riferimento costante
 int factRefConst(const int &val){
     int ret = 1;
     while (val > 1) ret *= val--;
@@ -69,11 +68,14 @@ int factRefConst(const int &val){
 }
 #endif
 
+//prototipo della funzione
+/*
+Dichiarare una funzione prima di averla costruita
+*/
+
 #include "2_punto.h"
 void f5(punto p){} // crea una copia in memoria
 void f6(const punto& p){} // utilizza la stessa variabile senza allocare memoria
-
-
 
 int main(){
     int x;
@@ -81,5 +83,4 @@ int main(){
     std::cout << "fattoriale con passaggio a valore: " << factVal(x) << ", x: " << x<< std::endl;
     std::cout << "fattoriale con passaggio a riferimento: " << factRef(x) << ", x: " << x << std::endl;
     std::cout << "fattoriale con passaggio a valore: " << factVal(x) << ", x: " << x<< std::endl;
-
 }
