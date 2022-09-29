@@ -18,7 +18,6 @@ int main(){
     }
 }
 
-
 bool ePrimo(int n){
     bool primo = true;
 
