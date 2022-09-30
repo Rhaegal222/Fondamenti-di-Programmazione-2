@@ -11,5 +11,5 @@ int main(){
             somma += numero;
         }     
     }
-    cout << somma;
+    cout << somma <<endl;
 }
