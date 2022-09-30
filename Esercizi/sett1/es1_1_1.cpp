@@ -33,4 +33,5 @@ int main(){
         }
         cout << "Numero di picchi massimi rilevati: " << cont_picchi << endl;
         cout << "Numero totale dei dati: "<< cont_giorni << endl;
+        return 0;
 }

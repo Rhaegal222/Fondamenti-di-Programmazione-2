@@ -9,7 +9,6 @@ int count_calls(){
 	return ++ctr;
 }
 
-
 int main(){
 	for(int i = 0; i != 0; i++){
 		cout << count_calls() << endl;
