@@ -4,7 +4,7 @@ Definire una funzione che calcola la distanza tra due punti (struct punto)
 
 #include <iostream>
 #include <cmath>
-#include ".\Teoria\sett1\2_punto.h"
+#include "2_punto.h"
 
 using namespace std;
 
