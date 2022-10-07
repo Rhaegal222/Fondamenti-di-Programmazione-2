@@ -45,8 +45,6 @@ a	b	c
 #include <iostream>
 using namespace std;
 
-
-
 void move(int disks, char from, char to, char aux){
 	static int tot_moves = 0;
 

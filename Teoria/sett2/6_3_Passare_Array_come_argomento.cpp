@@ -17,8 +17,13 @@ int main(){
 
 }
 
-void print(int ia[], int size){ }
-void print(int *a, int size){ }
+void print(int v[], int dim){ }
+void print(int *v, int dim){ }
+
+/*
+int vect[2] = 40, 1
+print(vect, 2)
+*/
 
 //per essere sicuri che l'array non venga modificato
 void print(const int ia[], int size){ } 

@@ -2,8 +2,7 @@
 #include <iostream>
 using namespace std;
 
-
-#if 0 
+#if 0
 const int capacity1 = 35;
 int *elenco1 = new int[capacity];
 
@@ -15,7 +14,6 @@ int *elenco2 = new int [cap2];
 delete[] elenco2;
 delete[] elenco;
 #endif
-
 
 // vogliamo leggere una sequenza di numeri da tastiera, 
 // senza sapere quanti siano e caricarli in un array di interi
@@ -53,7 +51,7 @@ void resize(int* &v, int &capacity, int increment){
 	for (int i = 0; i < capacity; i++)
 		temp[i] = v[i];
 
-	delete [] v; //cancello il vecchio array
+	delete []v; //cancello il vecchio array
 
 	v = temp;
 	cout << capacity;

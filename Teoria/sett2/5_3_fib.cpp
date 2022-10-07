@@ -5,9 +5,7 @@
 // . . . 
 // fib(n) = fib(n-1) + fib(n-2)
 #include <iostream>
-
 using namespace std;
-
 
 int fib(int n){
 	int f, f1 = 0, f2 = 1;
@@ -26,7 +24,6 @@ int fib_rec(int n){
 	if( n == 0 || n == 1) return n;
 	else return fib_rec(n-1) + fib_rec(n-2); 
 }
-
 
 int main(){
 	int n;
