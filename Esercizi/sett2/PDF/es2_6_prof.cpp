@@ -1,29 +1,24 @@
-
 #include <iostream>
 using namespace std;
 
-
 const int N = 3;
 
-
 void LeggiMatrice(int M[][N]);
+void calcolaSottomatriceMassimaUguale(int M[][N]);
+bool controllaSottoMatrice(int M[][N], int riga, int colonna, int dim);
 
 int main(){
 
 	int M[N][N];
 	LeggiMatrice(M);
-
-
 	calcolaSottomatriceMassimaUguale(M);
 }
-
 
 void LeggiMatrice(int M[][N]){
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < N; j++)
 			cin >> M[i][j];
 }
-
 
 void calcolaSottomatriceMassimaUguale(int M[][N]){
 	for (int dim = N; dim >= 1; dim--){

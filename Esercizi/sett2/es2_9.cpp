@@ -6,7 +6,7 @@ using namespace std;
 const int n = 3;
 
 void LeggiMatrice(int M[][n]);
-void VettoreSomiglianza(int A[][n], int B[][n], int* V){
+void VettoreSomiglianza(int A[][n], int B[][n], int* V);
 int GradoSomiglianza(int A[][n], int B[][n], int col);
 bool allineateGrado3(int A[][n], int B[][n], int* V);
 
@@ -43,7 +43,7 @@ void VettoreSomiglianza(int* A, int* B, int* V){
 
 
 
-int GradoSomiglianza(int* A, int* B, int col){
+int GradoSomiglianza(int* A, int* B, int* col){
 	int somiglianza = 0;
 	
 	for (int ia = 0; ia < n; ia++)

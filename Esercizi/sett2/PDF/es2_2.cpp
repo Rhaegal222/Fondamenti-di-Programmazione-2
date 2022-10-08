@@ -1,6 +1,10 @@
 /* Esercizio 2
-Leggere da tastiera una matrice M di interi di dimensione n × n e determinare se M ha un punto di sella. 
-Un elemento M[i][j] è un punto di sella per M se esso è il minimo della riga i e il massimo della colonna j. */
+	PUNTO DI SELLA
+	Leggere da tastiera una matrice M di interi di dimensione N x N 
+	(con N costante definita) e determinare se la matrice M ha un punto di sella
+	Un punto di sella è un elemento della matriche che è contemporaneamente il minimo
+	sulla riga ed il massimo sulla colonna
+*/
 
 #include<iostream>
 using namespace::std;
