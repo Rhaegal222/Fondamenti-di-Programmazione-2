@@ -63,7 +63,7 @@ void bublesort(int a[], int n) {
  * controllo ogni posizione
  * O(n)
  *
- */
+**/
 
 // * SELECTION SORT
 

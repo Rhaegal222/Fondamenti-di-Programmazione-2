@@ -1,21 +1,30 @@
-/* Esercizio 6 */
+#include <iostream>
+using namespace std;
 
-#include<iostream>
-using namespace::std;
+const int N = 4;
 
-const int N = 5;
+void LeggiMatrice(int M[][N]);
+void StampaMatrice(int M[][N]);
+void calcolaSottomatriceMassimaUguale(int M[][N]);
+bool controllaSottoMatrice(int M[][N], int riga, int colonna, int dim);
 
-void readMat(int M[][N], int dim){
-    for (int i = 0; i < dim; i++){
-        for(int j = 0; j < dim; j++){
-            cin >> M[i][j];
-        }
-    }
+int main(){
+	int M[N][N];
+	LeggiMatrice(M);
+	StampaMatrice(M);
+	calcolaSottomatriceMassimaUguale(M);
 }
 
-void printMat(int M[][N], int dim){
-    for (int i = 0; i < dim; i++){
-        for(int j = 0; j < dim; j++){
+void LeggiMatrice(int M[][N]){
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
+			cin >> M[i][j];
+}
+
+void StampaMatrice(int M[][N]){
+	cout << endl;
+    for (int i = 0; i < N; i++){
+        for(int j = 0; j < N; j++){
             cout << M[i][j] << " ";
         }
     cout << endl;
@@ -23,26 +32,26 @@ void printMat(int M[][N], int dim){
     cout << endl;
 }
 
-int search(int M[][N], int dif){
-    bool cond = true;
-    for(int rip = 0; rip < dif; rip++)
-        for(int i = 0+rip; i < N; i++){
-            for(int j = 0; j < N; j++){
-                if(M[i][j] != M[i][j+1]){
-                    cond = false;
-                }
-
-            }
-        }
+void calcolaSottomatriceMassimaUguale(int M[][N]){
+	for (int dim = N; dim >= 1; dim--){
+		for (int riga = 0; riga <= N-dim; riga++){
+			for (int colonna = 0; colonna <= N-dim; colonna++){
+				if (controllaSottoMatrice(M, riga, colonna, dim))
+				{
+					cout << "Dimensione massima di sottomatrice: " << dim << endl;
+					cout << "Coordinate del primo punto: [" << riga << "," << colonna << "]\n";
+					cout << "Valore " << M[riga][colonna] << endl;
+					return;
+				}
+			}
+		}
+	}
 }
 
-int main(){
-    int M[N][N];
-
-    readMat(M,N);
-    printMat(M, N);
-
-    search(M, 1);
-    
-    return 0;
+bool controllaSottoMatrice(int M[][N], int riga, int colonna, int dim){
+	int elem = M[riga][colonna];
+	for (int y = 0; y < dim; y++)
+		for (int x = 0; x < dim; x++)
+			if (elem != M[riga + y][colonna + x]) return false;
+	return true;
 }

@@ -5,8 +5,9 @@
 
 # Tecnica divide et Impera
 
-1) devo poter dividere P in sotto-problemI
-2) devo poter combinare le sotto-soluzioni
+1) Dividere il problema in sotto-problemI
+2) Risolvere i sotto-problemi
+3) Combina le soluzioni dei sotto-problemi
 
 ## pseudocodice
 

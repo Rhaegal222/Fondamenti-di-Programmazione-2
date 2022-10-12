@@ -13,13 +13,12 @@
 
 $n$ = dim. dell'input
 1 operazione = $10^{-6}\sec$
-| nome   | num operazioni | n = 10         | n = 10000 | n = 10^6       |
-| ------ | :------------: | -------------- | --------- | -------------- |
-| algo 1 |       n        | $10^{-5}\sec$  | 10^-2sec  | 1sec           |
-| algo 2 |      n^2       | $0.1\sec$      | 100sec    | 10^6sec ~ 12gg |
-| algo 3 |    nlog(n)     | $310^{-6}\sec$ | 0.13sec   | 19 sec         |
-
-___
+| NOME   | NUM OPERAZIONI | N = 10          | N = 10000     | N = $10^{6}$         |
+| ------ | :------------: | --------------- | ------------- | -------------------- |
+| algo 1 |       n        | $10^{-5}\sec$   | $10^{-2}\sec$ | 1 sec                |
+| algo 2 |      n^2       | $0.1\sec$       | 100 sec       | $10^{6}\sec$ ~ 12gg  |
+| algo 3 |    nlog(n)     | $3*10^{-6}\sec$ | 0.13 sec      | 19 sec               |
+____________________________________________________________________________________
 
 ## Dim dell'input
 
@@ -51,7 +50,7 @@ while(i<=n) // n+1 confronti
 
 ## Complessità Asintotica
 
-- notazione $O$
+- notazione $O$ ('o' grande)
 - notazione s2
 
 $f(n) \in O(g(n))$  se  $\exists  c,n_0 > 0$   t.c.
@@ -70,10 +69,11 @@ $0 \le f(n) \le c \cdot g(n)$$
 - $O(2^n)$ esponenziale
 
 "in termini di costanti" (per n piccoli)
-___
+_
 
-istruzioni di costo unitario O(1)
-blocchi di istruzioni
+Istruzioni di costo unitario O(1)
+
+## Blocchi di istruzioni
 
 $f_1 \rarr O(g_1) +$  
 $f_2 \rarr O(g_2) +$  
@@ -81,14 +81,14 @@ $f_3 \rarr O(g_3) +$
 $f_4 \rarr O(g_4) =$  
 $\max(g_1, g_2, g_3, g_4)$
 
-___
-
 ```cpp
 if (cond)    // f_cond + f_if   |
     {blocco if}              // | max
 else         // f_cond + f_else |
     {blocco else}
 ```
+
+Se il costo è costante e le istruzioni sono in serie basta sommare il costo delle operazioni; il risultato sarà sicuramente una costante.
 
 ## casi
 
@@ -99,14 +99,14 @@ else         // f_cond + f_else |
 ## cicli
 
 ```cpp
-while(cond){    
- /*corpo while*/   
+while (cond){       // k iter.          |
+  /*corpo while*/;  // k(f_cond+f_while)|
 }
 ```
 
 $f_{cond}  =  k iter$  
 $f_{corpo} = k (f_{cond} + f_{corpo})$
-___
+_
 
 ```cpp
 for(init, cond, agg){
@@ -128,7 +128,35 @@ ret_type f(param_type param){
 - costo della `return`
 - costo del corpo
 
-___
+```cpp
+void stampaStelle(int k){
+  for(int i=0; i<k; i++){
+    cout<<'*';
+  }
+}
+```
+
+Costo: K volte qualcosa che costa 1; $O(k)$.
+
+```cpp
+int main(){
+  int n;
+  cin >> n;
+  for(int i=0; i<n; i++){
+    stampaStelle(n);
+  }
+}
+```
+
+| i     |  Costo |
+| -     | ------ |
+| 1     |   1+   |
+| 2     |   2+   |
+| 3     |   3+   |
+| n - 1 | n - 1+ |
+|   n   |   n    |
+
+
 
 ```cpp
 int fib(int n){     // O(1)

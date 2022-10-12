@@ -35,8 +35,7 @@ bool ricercaLineareOrd(int insieme[], int x, int n) {
 
 // Ricerca binaria
 bool ricercaBinariaRic(int v[], int x, int n, int left, int right) {
-    if (left >= right)
-        return (left == right && v[left] == x);
+    if (left >= right) return (left == right && v[left] == x);
     else {
         int mid = (left + right) / 2;
 
@@ -46,7 +45,7 @@ bool ricercaBinariaRic(int v[], int x, int n, int left, int right) {
             right = mid - 1;
         else  // v[medio] == x
             left = right = mid;
-        return ricercaBinariaRic(v[], x, n, left, right);
+        return ricercaBinariaRic(v, x, n, left, right);
     }
 }
 // C.P. ----> O(log_2(n))
@@ -72,6 +71,6 @@ int main() {
     int x;
     cin >> x;
 
-    ricercaBinariaRic(v[], );
+    ricercaBinariaRic(v, x, n);
     return 0;
 }
