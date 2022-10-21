@@ -20,4 +20,16 @@ public:
 }
 ```
 
+```cpp
+class Example{
+	int * ptr; int dim;
+public:
+	//costruttori
+	Example(int n){dim = n; ptr = new int[dim];};
+	//distruttore
+	~Esempio() { delete []ptr; };
+...
+}
+```
+
 lo rivedremo più avanti
