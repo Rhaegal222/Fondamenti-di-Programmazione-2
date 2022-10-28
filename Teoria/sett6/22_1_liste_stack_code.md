@@ -121,7 +121,7 @@ T Stack<T>::top() {
 }
 ```
 
-## Codice: Letta una espressione parentesizzata (una stringa), determinare se essa è ben parentesizzata (ad ogni parentesi aperta corrisponde una parentesi chiusa). Stampare, inoltre, la coppia di posizioni di apertura/chiusura parentesi
+## Codice: Letta un'espressione parentesizzata (una stringa), determinare se essa è ben parentesizzata (ad ogni parentesi aperta corrisponde una parentesi chiusa). Stampare, inoltre, la coppia di posizioni di apertura/chiusura parentesi
 
 Esempio: ((x+2) + (y-3) * ((k^2) - 2x))
 
