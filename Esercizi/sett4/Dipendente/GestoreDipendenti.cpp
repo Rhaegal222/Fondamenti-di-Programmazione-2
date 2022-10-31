@@ -3,8 +3,6 @@
 #include <algorithm>
 using namespace std;
 
-
-
 bool GestoreDipendenti::aggiungiDipendente(Dipendente d) {
 	if(!esisteDipendente(d.getId()))
 	{
@@ -14,7 +12,6 @@ bool GestoreDipendenti::aggiungiDipendente(Dipendente d) {
 	return false;
 }
 
-
 bool GestoreDipendenti::esisteDipendente(string id) const {
 	for (int i = 0; i < dipendenti.size(); i++)
 		if(dipendenti[i].getId() == id)
@@ -22,7 +19,6 @@ bool GestoreDipendenti::esisteDipendente(string id) const {
 
 	return false;	
 }
-
 
 void GestoreDipendenti::rimuoviDipendente(string id) {
 	if(!esisteDipendente(id)) return;

@@ -87,9 +87,7 @@ unsigned maxDifferenzaEta(Programmatore programmatori[]){
 
 }
 
-
-
-bool anzianita(Programmarore programmatori[]){
+bool anzianita(Programmatore programmatori[]){
 
 	for (int i = 0; i < numero_programmatori; ++i) {
 		for (int j = 0; j < numero_programmatori; ++j) {
@@ -105,7 +103,7 @@ bool anzianita(Programmarore programmatori[]){
 
 bool anzianietaOrdinata(Programmatore programmatori[]){
 	for(int i = 1; i < numero_programmatori; ++i){
-		if(programmatori[i].getStipendio() < programmatori[i-1])
+		if(programmatori[i].getStipendio() < programmatori[i-1]) 
 			return false;
 	}
 	return true;

@@ -27,8 +27,7 @@ public:
 	void setNome(string nome) { this->nome = nome; }
 	void setCognome(string cognome) { this->cognome = cognome; }
 	void setStipendio(float stipendio) { this->stipendio = stipendio; }
-	
-	
+		
 	friend ostream& operator<<(ostream& o, const Dipendente& d){
 		o << d.id << " " << d.nome << " " << d.cognome << " " << d.stipendio << " euro" << endl;
 		return o;
