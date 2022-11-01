@@ -29,5 +29,7 @@ int main(){
 	g.stampa();
 
 	cout << "Somma degli stipendi: " << g.calcolaCostoDipendenti() << endl;
+
+	cout << d1.getNome();
 	return 0;
 }

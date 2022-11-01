@@ -13,6 +13,6 @@ public:
     bool();
 private:
     list<veicolo*>
-}
+};
 
 #endif

@@ -15,14 +15,14 @@ class Dipendente{
     public:
         Dipendente() {};
         Dipendente(string id, string nome, string cognome, float stipendio);
-        Dipendente(const Dipendente& dipendente);
+        //Dipendente(const Dipendente& dipendente); //costruttore di copia
 
         string getId() const { return id; }
         string getNome() const { return nome; }
         string getCognome() const { return cognome; }
         float getStipendio() const { return stipendio; }
 
-        void getId(string id) { this->id = id; }
+        void setId(string id) { this->id = id; }
         void setNome(string nome) { this->nome = nome; }
         void setCognome(string cognome) { this->cognome = cognome; }
         void setStipendio(float stipendio) { this->stipendio = stipendio; }
@@ -40,12 +40,11 @@ Dipendente::Dipendente(string id, string nome, string cognome, float stipendio):
 	stipendio{stipendio}
 {}
 
-Dipendente::Dipendente(const Dipendente& dipendente):
-	id{dipendente.id},
-	nome{dipendente.nome},
-	cognome{dipendente.cognome},
-	stipendio{dipendente.stipendio}
-{}
-
+//Dipendente::Dipendente(const Dipendente& dipendente):
+//	id{dipendente.id},
+//	nome{dipendente.nome},
+//	cognome{dipendente.cognome},
+//	stipendio{dipendente.stipendio}
+//{}
 
 #endif
