@@ -1,203 +1,173 @@
-// ListaT.h: interface for the ListaT class.
+#ifndef LIST_H
+#define LIST_H
 
-#ifndef LISTAT_H
-#define LISTAT_H
+template <class T>
+class List {
 
-#include "NodoT.h"
-#include <cassert>
-#include <iostream>
-using namespace std;
+    public:
+        List();
+        void push_back(T value); //Inserisce value alla fine della lista
+        void pop_back(); //Rimuove l'ultimo elemento
+        T& back(); //Restituisce un riferimento all'ultimo elemento
+        const T& back() const; //Restituisce un riferimento costante all'ultimo elemento
+        void push_front(T value); //Inserisce un elemento all'inizio della lista
+        void pop_front(); //Rimuove il primo elemento
+        T& front(); //Restituisce un riferimento al primo elemento
+        const T& front() const; //Restituisce un riferimento costante al primo elemento
+        bool empty() const; //Controlla se la lista è vuota
+        void clear(); //Svuota la lista
+        unsigned size() const; //Restituisce il numero di elementi nella lista
 
-template< class T >
-class List
-{
-//DOPO
-friend class Iterator<T>;
-
-public :
-	List() :first(0),last(0) {}
-	~List();
-	void pushFront(const T&);
-	void pushBack(const T&);
-	bool popFront(T& v);
-	bool popBack(T& v);
-	bool empty() const {return (first==0);}
-	void print() const;
-	bool find(const T&) const;
-    void delNode(Node<T>* &);
-    void remove(const T&v);
-    Node<T> * front();
-
-protected:  	//SERVE PER FAR ACCEDERE AD EVENTUALI CLASSI DERIVATE
-	Node<T> * first; //puntatore al primo nodo
-	Node<T> * last;  // puntatore all'ultimo nodo
-      Node<T> * newNode(const T&);
-     //Funzione di utilità che crea un nuovo nodo
+        ~List();
+        List(const List<T>& l);
+        List<T>& operator=(const List<T>& l);
+    
+    private:
+        struct Node {
+            Node* previous;
+            Node* next;
+            T value;
+        };
+        
+        Node* head;
+        Node* tail;
 };
 
-template< class T >
-List<T>::~List()
-{
-	if(first == 0) return; //alternativamente invocare empty()
-	Node<T> *curr=first;
-	Node<T> * tmp;
-	while(curr != 0)
-	{
-		tmp = curr;
-		curr = curr->nextNode;
-		delete tmp;
-	}
-}
-
-template< class T >
-void List<T>::pushFront(const T& v)
-{
-    Node<T> *n = newNode(v);
-    if(empty()) //testa ==0;
-        first = last = n;
-
-    else
-    {
-        n->nextNode = first;
-        first = n;
-    }
-}
-
-template< class T >
-Node<T> *List<T>::newNode(const T &v)
-{
-    Node<T> *ptr = new Node<T>(v);
-    assert(ptr!=0);
-    return ptr;
-}
-
-template< class T >
-void List<T>::pushBack(const T& v)
-{
-    Node<T> *n = newNode(v);
-    if(empty()) //testa ==0;
-        first = last = n;
-
-    else
-    {
-    	last->nextNode = n;
-    	last = n;
-    }
-}
-
-template< class T >
-bool List<T>::popFront(T &v)
-{
-	if( empty())
-        return false;
-    Node<T>* tmp = first;
-	if (last == first)
-		first = last = 0;
-    else
-        first = first->nextNode;
-	v = tmp->value;
-	delete tmp;
-    return true;
-}
-
-template< class T >
-bool List<T>::popBack(T &v)
-{
-    if(empty()) //testa ==0;
-        return false;
-    Node<T>* tmp = last;
-
-	if(first == last)
-		first = last = 0;
-    else
-    {
-    Node<T> * curr = first;
-    while(curr->nextNode != last )
-        curr=curr->nextNode;
-    last = curr;
-    last->nextNode=0;
-    }
-	v = tmp->value;
-	delete tmp;
-    return true;
-}
-
-
-template< class T >
-void List<T>::print() const
-{
-   if( empty())
-   {
-       cout<<"empty";
-       return;
-   }
-   cout<<"Lista "<<endl;
-   Node<T> * ptr = first;
-   while(ptr!=0)
-   {
-       cout<<ptr->value<<" ";
-       ptr=ptr->nextNode;
-   }
-   cout<<endl;
-}
-
-template< class T>
-bool List<T>::find(const T& v) const
-{
-    Node<T> * ptr = first;
-    while(ptr!=0)
-    {
-        if(ptr->value == v)
-            return true;
-        ptr=ptr->nextNode;
-    }
-    return false;
+template <class T>
+List<T>::List() {
+    head = nullptr;
+    tail = nullptr;
 }
 
 template <class T>
-void List<T>::delNode(Node<T>* & pos) 
-//N.B. dopo la cancellazione pos punta al nodo successivo a quello cancellato
-{
-      assert(first!=0);
-	assert(pos!=0);
-	
-	if (pos==first) 
-	{
-		first=pos->nextNode;
-		delete pos;
-		pos=first;
-	}
-	else{
-
-		Node<T> * prec=first;
-		while(prec->nextNode!=pos) prec=prec->nextNode;
-		Node<T> *tmp = pos;
-		prec->nextNode = pos->nextNode;
-		if (pos==last) last = prec;
-		delete pos;
-		pos=prec;
-	}
+void List<T>::push_back(T value) {
+    Node* node = new Node();
+    node->previous = tail;
+    node->next = nullptr;
+    node->value = value;
+    if(tail != nullptr) {
+        tail->next = node;
+        tail = node;
+    }
+    else {
+        head = node;
+        tail = node;
+    }
 }
 
 template <class T>
-void List<T>::remove(const T&v)
-{
-    if(empty()) return;
-    bool found=false;
-	Node<int> * n;
-	
-	for (n=front(); n!=NULL && !found; n=n->getNextNode())
-		if (n->getValue()==v) 
-		{
-			found=true;
-			delNode(n); 
-		}
-	
+void List<T>::pop_back() {
+    if(head == tail) {
+        delete tail;
+        head = nullptr;
+        tail = nullptr;
+    }
+    else {
+        Node* tmp = tail->previous;
+        tmp->next = nullptr;
+        delete tail;
+        tail = tmp;
+    }
 }
 
 template <class T>
-Node<T>* List<T>::front()
-{
-	return first;
+T& List<T>::back() {
+    return tail->value;
 }
+
+template <class T>
+const T& List<T>::back() const {
+    return tail->value;
+}
+
+template <class T>
+void List<T>::push_front(T value) {
+    Node* node = new Node();
+    node->previous = nullptr;
+    node->next = head;
+    node->value = value;
+    if(head != nullptr) {
+        head->previous = node;
+        head = node;
+    }
+    else {
+        head = node;
+        tail = node;    
+    }
+}
+
+template <class T>
+void List<T>::pop_front() {
+    if(head == tail) {
+        delete head;
+        head = nullptr;
+        tail = nullptr;
+    }
+    else {
+        Node* tmp = head->next;
+        tmp->previous = nullptr;
+        delete head;
+        head = tmp;
+    }
+}
+
+template <class T>
+T& List<T>::front() {
+    return head->value;
+}
+
+template <class T>
+const T& List<T>::front() const {
+    return head->value;
+}
+
+template <class T>
+bool List<T>::empty() const {
+    return head == nullptr; //return tail == nullptr;
+}
+
+template <class T>        
+void List<T>::clear() {
+    while(!empty())
+        pop_back();
+}
+
+template <class T>
+unsigned List<T>::size() const {
+    unsigned int sz = 0;
+    Node* current = head;
+    while(current != nullptr) {
+        sz++;
+        current = current->next;
+    }
+    return sz;
+}
+
+template <class T>
+List<T>::~List() {
+    clear();
+}
+
+template <class T>
+List<T>::List(const List<T>& l) {
+    Node* current = l.head;
+    while(current != nullptr) {
+        push_back(current->value);
+        current = current->next;
+    }
+}
+
+template <class T>
+List<T>& List<T>::operator=(const List<T>& l) {
+    if(this != &l) {
+        clear();
+        Node* current = l.head;
+        while(current != nullptr) {
+            push_back(current->value);
+            current = current->next;
+        }
+    }
+    return *this;
+}
+
 #endif

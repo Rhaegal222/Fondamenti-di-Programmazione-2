@@ -1,5 +1,19 @@
 # Stack
 
+```cpp
+template <class T>
+class stack: protected List<T>
+{
+    public:
+        stack(){};
+        ~stack(){};
+        void push(const T& v){List<T>::push_front(v);}
+        using List<T>::empty();
+}
+```
+## Da completare...
+__
+
 ## Stampa dello stack
 
 output:
