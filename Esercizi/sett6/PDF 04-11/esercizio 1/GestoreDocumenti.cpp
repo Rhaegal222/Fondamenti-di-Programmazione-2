@@ -47,3 +47,20 @@ void GestoreDocumenti::stampaDocumenti() const {
         Documento selected = **it;
         cout << selected.getProprietario() << " " << selected.getDescrizione() << " " << selected.getDimensioneFile() << endl;}
 }
+
+void GestoreDocumenti::ordinaDocumenti(int valore){
+    switch (valore)
+    {
+    case 1:
+        /* code */
+        break;
+    
+    case 2:
+        /* code */
+        break;
+
+    case 3:
+        /* code */
+        break;
+    }
+}
