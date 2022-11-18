@@ -2,32 +2,39 @@
 #define UTENTE_H
 
 #include <iostream>
-#include <string>
-using std::cout;
-using std::ostream;
-using std::string;
+using namespace std;
 
 class Utente {
+    public:
+        Utente() : numero(0), tipologiaOperazione(0) {}
+        Utente(int n, int to) : numero(n), tipologiaOperazione(to) {}
+        int getNumero() const { return numero; }
+        int getTipologiaOperazione() const { return tipologiaOperazione; }
+        
+        friend ostream& operator<<(ostream& o, const Utente& u) {
+            o << "Numero: " << u.numero << ", ";
+            
+            switch(u.tipologiaOperazione) {
+                case 0:
+                    o << "spedizione";
+                    break;
+                    
+                case 1:
+                    o << "pagamento";
+                    break;
+                    
+                case 2:
+                    o << "riscossione";
+                    break;
+                
+            }
+            
+            return o;
+        }
+    private:
+        int numero;
+        int tipologiaOperazione;
 
-private:
-    int numero;
-    int tipologiaOperazione; //0: spedizione, 1: pagamento, 2: riscossione
-
-public:
-    Utente() {}
-    Utente(int numero, int tipologiaOperazione) :
-        numero(numero),
-        tipologiaOperazione(tipologiaOperazione) {}
-
-    Utente(const& Utente);
-
-    int getNumero() const { return numero; }
-    int getTipologiaOperazione() const { return tipologiaOperazione; }
 };
-
-ostream& operator<<(ostream& o, const Utente& c) {
-    o << "Numero" << c.getNumero() << "Tipologia Operazione: " << c.getTipologiaOperazione();
-    return o;
-}
 
 #endif
