@@ -52,15 +52,45 @@ void GestoreDocumenti::ordinaDocumenti(int valore){
     switch (valore)
     {
     case 1:
-        /* code */
+        for (list<Documento *>::const_iterator it1 = listaDocumenti.begin(); it1 != listaDocumenti.end(); it1++){
+            for (list<Documento *>::const_iterator it2 = listaDocumenti.begin(); it2 != listaDocumenti.end(); it2++){
+                Documento sel1 = **it1;
+                Documento sel2 = **it2;
+                if (sel1.getProprietario() < sel2.getProprietario()){
+                    Documento tmp = **it1;
+                    **it1 = **it2;
+                    **it2 = tmp;
+                }
+            }
+        }
         break;
     
     case 2:
-        /* code */
+        for (list<Documento *>::const_iterator it1 = listaDocumenti.begin(); it1 != listaDocumenti.end(); it1++){
+            for (list<Documento *>::const_iterator it2 = listaDocumenti.begin(); it2 != listaDocumenti.end(); it2++){
+                Documento sel1 = **it1;
+                Documento sel2 = **it2;
+                if (sel1.getDescrizione() < sel2.getDescrizione()){
+                    Documento tmp = **it1;
+                    **it1 = **it2;
+                    **it2 = tmp;
+                }
+            }
+        }
         break;
 
     case 3:
-        /* code */
+        for (list<Documento *>::const_iterator it1 = listaDocumenti.begin(); it1 != listaDocumenti.end(); it1++){
+            for (list<Documento *>::const_iterator it2 = listaDocumenti.begin(); it2 != listaDocumenti.end(); it2++){
+                Documento sel1 = **it1;
+                Documento sel2 = **it2;
+                if (sel1.getDimensioneFile() < sel2.getDimensioneFile()){
+                    Documento tmp = **it1;
+                    **it1 = **it2;
+                    **it2 = tmp;
+                }
+            }
+        }
         break;
     }
 }

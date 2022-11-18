@@ -8,16 +8,27 @@ using std::cout;
 int main() {
     GestoreDocumenti lista;
 
-    Documento doc("Rinuncia agli studi", "Unical", 1024);
-    DocumentoPDF pdf("Putin", "Annessione mondiale alla Russia.pdf", 4096, false);
-    DocumentoMP3 mp3("Gianni Celeste", "Povero Gabbiano.mp3", 17054, 170.0);
+    Documento doc("Alberto", "Preventivo.doc", 1024);
+    DocumentoPDF pdf("Mario", "Fattura.pdf", 4096, false);
+    DocumentoMP3 mp3("Barbara", "Ricevuta.mp3", 17054, 170.0);
 
     lista.aggiungiDocumento(&doc);
     lista.aggiungiDocumento(&pdf);
     lista.aggiungiDocumento(&mp3);
 
-    lista.rimuoviDocumento(&pdf);
-    
+    //ordina in base al proprietario
+
+    lista.ordinaDocumenti(1);
+    lista.stampaDocumenti();
+
+    //ordina in base alla descrizione
+
+    lista.ordinaDocumenti(2);
+    lista.stampaDocumenti();
+
+    //ordina in base alla dimensione del file
+
+    lista.ordinaDocumenti(3);
     lista.stampaDocumenti();
 
     return 0;
