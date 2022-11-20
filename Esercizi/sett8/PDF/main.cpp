@@ -55,36 +55,37 @@ bool pariEDispari(const AlberoB<int>& tree, int level){
 }
 
 int main(){
+    AlberoB<int> UNDICI(11);
     AlberoB<int> DIECI(10);
     AlberoB<int> NOVE(9);
+    AlberoB<int> NOVEC(9);
     AlberoB<int> OTTO(8);
     AlberoB<int> SETTE(7);
     AlberoB<int> SEI(6);
     AlberoB<int> CINQUE(5);
+    AlberoB<int> CINQUEC(5);
     AlberoB<int> QUATTRO(4);
     AlberoB<int> TRE(3);
     AlberoB<int> DUE(2);
     AlberoB<int> UNO(1);
 
-    DIECI.insFiglio(SIN, NOVE);
-    DIECI.insFiglio(DES, SETTE);
-    NOVE.insFiglio(SIN, OTTO);
-    NOVE.insFiglio(DES, SEI);
-    OTTO.insFiglio(SIN, CINQUE);
-    OTTO.insFiglio(DES, TRE);
-    SETTE.insFiglio(SIN, QUATTRO);    
-    QUATTRO.insFiglio(DES, DUE);
+    //UNO.insFiglio(SIN, SETTE);      
+    //UNO.insFiglio(DES, NOVE);         /*       1        */
+    //NOVE.insFiglio(DES, NOVEC);       /*     /    \     */
+    //NOVEC.insFiglio(SIN, CINQUEC);    /*    7      9    */
+    //SETTE.insFiglio(SIN, DUE);        /*   / \      \   */
+    //SETTE.insFiglio(DES, SEI);        /*  2   6      9  */
+    //SEI.insFiglio(SIN, CINQUE);       /*     / \    /   */
+    //SEI.insFiglio(DES, UNDICI);       /*    5   11 5    */
 
-    /*
-             10
-           /    \
-          9      7
-         / \    /
-        8   6  4
-       / \      \
-      5   3      1
-    
-    */
+    DIECI.insFiglio(SIN, NOVE);      
+    DIECI.insFiglio(DES, SETTE);        /*         10     */     
+    NOVE.insFiglio(SIN, OTTO);          /*       /    \   */     
+    NOVE.insFiglio(DES, SEI);           /*      9      7  */     
+    OTTO.insFiglio(SIN, CINQUE);        /*     / \    /   */     
+    OTTO.insFiglio(DES, TRE);           /*    8   6  4    */     
+    SETTE.insFiglio(SIN, QUATTRO);      /*   / \      \   */             
+    QUATTRO.insFiglio(DES, DUE);        /*  5   3      1  */
 
     /*esercizio 1*/
     visitaAnticipata(DIECI, 5);
