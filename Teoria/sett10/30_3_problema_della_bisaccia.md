@@ -37,11 +37,11 @@ bool greaterThan(Toggetto o1, Toggetto o2){
 
 vector<bool> sKnapsack_01(vector<Toggetto>& oggetti, int Cmax) {
     int n = iggetti.size();
-    sort(oggetti.begin(), oggetti.end(), greaterThan);
+    sort(oggetti.begin(), oggetti.end(), greaterThan); // O(n log n)
     vector<bool> sol(n, false);
     int Cspeso = 0;
     for(int i = 0; i < n && Cspeso <= CMax; i++) {
-        if((Cspeso + oggetti[i].costo) <= Cmax){
+        if((Cspeso + oggetti[i].costo) <= Cmax){ // O(n)
             sol[i] = true; 
             Cspeso -= oggetti[i].costo;
         }

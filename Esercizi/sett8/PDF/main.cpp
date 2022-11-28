@@ -39,8 +39,7 @@ bool ogniPercorsoRadiceFoglia(const AlberoB<int>& tree, int costo,  int k){
         return false;
     }
 
-    ogniPercorsoRadiceFoglia(tree.figlio(DES), costo, k);
-    ogniPercorsoRadiceFoglia(tree.figlio(SIN), costo, k);
+    return ogniPercorsoRadiceFoglia(tree.figlio(DES), costo, k) && ogniPercorsoRadiceFoglia(tree.figlio(SIN), costo, k);
 }
 
 /*Esercizio 4*/
@@ -80,7 +79,7 @@ int main(){
 
     DIECI.insFiglio(SIN, NOVE);      
     DIECI.insFiglio(DES, SETTE);        /*         10     */     
-    NOVE.insFiglio(SIN, OTTO);          /*       /    \   */     
+    NOVE.insFiglio(DES, OTTO);          /*       /    \   */     
     NOVE.insFiglio(DES, SEI);           /*      9      7  */     
     OTTO.insFiglio(SIN, CINQUE);        /*     / \    /   */     
     OTTO.insFiglio(DES, TRE);           /*    8   6  4    */     
