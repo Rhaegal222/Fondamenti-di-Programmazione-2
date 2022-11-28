@@ -18,7 +18,7 @@ class List {
         void clear(); //Svuota la lista
         unsigned size() const; //Restituisce il numero di elementi nella lista
 
-        ~List();
+        ~List(); //distruttore
         List(const List<T>& l);
         List<T>& operator=(const List<T>& l);
     

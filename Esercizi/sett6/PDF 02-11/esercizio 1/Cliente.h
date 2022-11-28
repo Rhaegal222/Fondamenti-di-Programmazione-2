@@ -16,12 +16,12 @@ private:
     int id;
     string nome;
     string trattamento;
-    int durataTrattamento;
+    unsigned durataTrattamento;
     int prezzoTrattamento;
 
 public:
     Cliente() {}
-    Cliente(int id, string nome, string trattamento, int durataTrattamento, int prezzoTrattamento) :
+    Cliente(int id, string nome, string trattamento, unsigned durataTrattamento, int prezzoTrattamento) :
         id(id),
         nome(nome),
         trattamento(trattamento),
@@ -33,7 +33,7 @@ public:
     int getId() const { return id; }
     string getNome() const { return nome; }
     string getTrattamento() const { return trattamento; }
-    int getDurataTrattamento() const { return durataTrattamento; }
+    unsigned getDurataTrattamento() const { return durataTrattamento; }
     int getPrezzoTrattamento() const { return prezzoTrattamento; }
 };
 
@@ -44,7 +44,6 @@ ostream& operator<<(ostream& o, const Cliente& c) {
         << "min\tprezzo: " << c.prezzoTrattamento << " euro\n";
     return o;
 }
-
 
 istream& operator>>(istream& i, Cliente& c) {
     i >> c.id >> c.nome >> c.trattamento >> c.durataTrattamento >> c.prezzoTrattamento;

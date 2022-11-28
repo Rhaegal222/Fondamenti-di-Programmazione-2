@@ -98,15 +98,12 @@ int main() {
     return 0;
 }
 
-
-
 void stampa(queue<Cliente> coda) {
     while(!coda.empty()) {
         cout << coda.front() << endl;
         coda.pop();
     }
 }
-
 
 void stampaOrario(int minuti) {
     cout << (minuti / 60) << "h:" << (minuti % 60) << "min\n";

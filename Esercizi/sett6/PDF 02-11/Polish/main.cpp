@@ -15,15 +15,13 @@ int main()
 
     for (int i = 0; i < espressione.length(); i++)
     {
-        if (espressione[i] != '+' && espressione[i] != '*' && espressione[i] !=  '-' && espressione[i] != '/')
+        if (espressione[i] != '+' && espressione[i] != '*' && espressione[i] !=  '-' && espressione[i] != '/' && espressione[i] != ' ')
         {
             c=espressione[i];
-            cout << "Questa e' c: " << c+1 << endl;
-            cout << "Questa e' c-48: " << c-48+1 << endl;
             res.push_back(c-48); //aggiungo il numero a res
             //-48 perchè le cifre in ascii partono da 48(0) e arrivano a 57(9)
         }
-        else
+        else if(espressione[i] != ' ')
         {
             if (espressione[i] == '+')  //USA IL SINGOLO APICE 
             {
@@ -63,7 +61,7 @@ int main()
     }
 
     int a=res[0];
-    std::cout<<"il risultato è: "<<a;
+    std::cout<<"Risultato: "<<a;
 
     return 0;
 }
