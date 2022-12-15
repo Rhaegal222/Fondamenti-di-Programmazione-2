@@ -16,7 +16,7 @@
 	- [Funzioni membro Costanti](#funzioni-membro-costanti)
 	- [Modi diversi di usare const](#modi-diversi-di-usare-const)
 	- [Membri Statici](#membri-statici)
-  
+
 ___
 
 <br>
@@ -108,6 +108,7 @@ int main(){
 
 	// Messsaggio di errore, comportamento indefinito
 	a = b + obj; // ???
+}
 
 ```
 
@@ -139,7 +140,7 @@ public x,y;
 CVector CVector::operator+ (const CVector& param){
 	CVector temp;
 	temp.x = x + param.x;
-	temp.y = y + param.y;	
+	temp.y = y + param.y;
 	return temp;
 }
 

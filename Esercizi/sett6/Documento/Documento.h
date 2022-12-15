@@ -31,7 +31,6 @@ public:
     void setDimensioneFile(int dimensioneFile) { this->dimensioneFile = dimensioneFile; }
 };
 
-
 class DocumentoPDF : public Documento {
 protected:
     bool firmato;

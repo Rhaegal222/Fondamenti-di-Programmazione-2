@@ -47,10 +47,27 @@ bool pariEDispari(const AlberoB<int>& tree, int level){
     if (tree.nullo())
 		return true;
 
-	if ((level % 2 == 0 && tree.radice() % 2 != 0) || (level % 2 != 0 && tree.radice() % 2 == 0))
+	if ((level % 2 == 0 && tree.radice() % 2 != 0) || (level % 2 != 0 && tree.radice() % 2 == 0)){
 		return false;
+    }
 
 	return pariEDispari(tree.figlio(SIN), level + 1) && pariEDispari(tree.figlio(DES), level + 1);
+}
+
+/*Esercizio 5*/
+    bool vocaliEConsonanti(const AlberoB<char>& tree, int vow, int cons){
+    
+    if(tree.nullo())return true;
+
+    if(tree.radice() == 'a' || tree.radice() == 'e' || tree.radice() == 'i' || tree.radice() == 'o' || tree.radice() == 'u')
+        vow += 1;
+    else
+        cons += 1;
+
+    if (vow > cons+1 || cons > vow+1)
+        return false; 
+
+    return vocaliEConsonanti(tree.figlio(SIN), vow, cons) && vocaliEConsonanti(tree.figlio(DES), vow, cons);
 }
 
 int main(){
@@ -68,38 +85,78 @@ int main(){
     AlberoB<int> DUE(2);
     AlberoB<int> UNO(1);
 
-    //UNO.insFiglio(SIN, SETTE);      
-    //UNO.insFiglio(DES, NOVE);         /*       1        */
-    //NOVE.insFiglio(DES, NOVEC);       /*     /    \     */
-    //NOVEC.insFiglio(SIN, CINQUEC);    /*    7      9    */
-    //SETTE.insFiglio(SIN, DUE);        /*   / \      \   */
-    //SETTE.insFiglio(DES, SEI);        /*  2   6      9  */
-    //SEI.insFiglio(SIN, CINQUE);       /*     / \    /   */
-    //SEI.insFiglio(DES, UNDICI);       /*    5   11 5    */
+    AlberoB<char> A('a');
+    AlberoB<char> B('b');
+    AlberoB<char> C('c');
+    AlberoB<char> D('d');
+    AlberoB<char> E('e');
+    AlberoB<char> F('f');
+    AlberoB<char> G('g');
+    AlberoB<char> H('h');
+    AlberoB<char> I('i');
+    AlberoB<char> J('j');
+    AlberoB<char> O('o');
 
-    DIECI.insFiglio(SIN, NOVE);      
-    DIECI.insFiglio(DES, SETTE);        /*         10     */     
-    NOVE.insFiglio(DES, OTTO);          /*       /    \   */     
-    NOVE.insFiglio(DES, SEI);           /*      9      7  */     
-    OTTO.insFiglio(SIN, CINQUE);        /*     / \    /   */     
-    OTTO.insFiglio(DES, TRE);           /*    8   6  4    */     
-    SETTE.insFiglio(SIN, QUATTRO);      /*   / \      \   */             
-    QUATTRO.insFiglio(DES, DUE);        /*  5   3      1  */
+    //UNO.insFiglio(SIN, SETTE);          /*  1.F 2.kmax=25 3.F 4.F */
+    //UNO.insFiglio(DES, NOVE);           /*           1            */
+    //NOVE.insFiglio(DES, NOVEC);         /*         /    \         */
+    //NOVEC.insFiglio(SIN, CINQUEC);      /*        7      9        */
+    //SETTE.insFiglio(SIN, DUE);          /*       / \      \       */
+    //SETTE.insFiglio(DES, SEI);          /*      2   6      9      */
+    //SEI.insFiglio(SIN, CINQUE);         /*         / \    /       */
+    //SEI.insFiglio(DES, UNDICI);         /*        5   11 5        */
+
+    DIECI.insFiglio(SIN, NOVE);         /*  1.T 2.kmax=32 3.T 4.T */      
+    DIECI.insFiglio(DES, SETTE);        /*            10          */
+    NOVE.insFiglio(SIN, OTTO);          /*          /    \        */
+    NOVE.insFiglio(DES, SEI);           /*         9      7       */
+    OTTO.insFiglio(SIN, CINQUE);        /*        / \    /        */
+    OTTO.insFiglio(DES, TRE);           /*       8   6  4         */
+    SETTE.insFiglio(SIN, QUATTRO);      /*      / \      \        */
+    QUATTRO.insFiglio(DES, UNO);        /*     5   3      1       */
+
+    //A.insFiglio(SIN, B);                /*         A      */
+    //A.insFiglio(DES, C);                /*       /   \    */
+    //B.insFiglio(SIN, E);                /*      B     C   */
+    //B.insFiglio(DES, D);                /*     / \    /   */
+    //C.insFiglio(SIN, F);                /*    E   D  F    */
+    //F.insFiglio(DES, I);                /*   / \      \   */
+    //E.insFiglio(SIN, G);                /*  G   H      I  */
+    //E.insFiglio(DES, H);                /*             /  */
+    //I.insFiglio(DES, O);                /* TRUE       O   */
+
+    A.insFiglio(SIN, B);                /*         A        */
+    A.insFiglio(DES, C);                /*       /   \      */
+    B.insFiglio(SIN, E);                /*      B     C     */
+    B.insFiglio(DES, D);                /*     / \    /     */
+    D.insFiglio(DES, J);                /*    E   D  F      */
+    C.insFiglio(SIN, F);                /*   / \   \  \     */
+    F.insFiglio(DES, I);                /*  G   H   J  I    */
+    E.insFiglio(SIN, G);                /*             /    */
+    E.insFiglio(DES, H);                /*            O     */
+    I.insFiglio(DES, O);                /*       FALSE      */
 
     /*esercizio 1*/
     visitaAnticipata(DIECI, 5);
         
     /*esercizio 2*/
-    if(isHeap(DIECI)) cout << "VERO" << endl;
-    else cout << "FALSO" << endl;
+    if(isHeap(DIECI)) cout << "Nessun elemento con valore informativo maggiore di quello di tutti i propri figli." << endl;
+    else cout << "Trovato elemento con valore informativo maggiore di quello di tutti i propri figli." << endl;
 
     /*esercizio 3*/
     int k = 32;
-    if(ogniPercorsoRadiceFoglia(DIECI, 0, k)) cout <<  "k = " << k << "\nNessun percorso con costo maggiore di k."<< endl;
-    else cout << "k = " << k << "\nTrovato percorso con costo superiore a k."<< endl;
+    if(ogniPercorsoRadiceFoglia(DIECI, 0, k)) cout << "Nessun percorso con costo maggiore di k. " << "(k = " << k << ")" << endl;
+    else cout << "Trovato percorso con costo superiore a k." << "(k =" << k << ")" << endl;
 
     /*esercizio 4*/
+    cout << "Pari e dispari: ";
     if(pariEDispari(DIECI, 0)) cout << "Condizioni rispettate!" << endl;
     else cout << "Condizioni NON rispettate!" << endl;
+
+    /*esercizio 5*/
+    cout << "Vocali e consonanti : ";
+    if(vocaliEConsonanti(A, 0, 0)) cout << "Condizioni rispettate!" << endl;
+    else cout << "Condizioni NON rispettate!" << endl;
+
 
 }

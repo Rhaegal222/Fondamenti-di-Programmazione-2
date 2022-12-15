@@ -55,6 +55,8 @@ int divcoins_greedy(vector<int>& coins) {
     return difference;
 }
 
+// 10 10 6 5 1
+// 0 -> 10 -> 10-10 -> 6-5 -> 1-1 -> 0
 
 // IMPLEMENTAZIONE DINAMICA
 
@@ -65,7 +67,6 @@ int divcoins(vector<int>& coins) {
     for(int coin : coins)
         somma += coin;
 
-
     // ci generiamo tutte le somme possibili usando le coins
     // iniziamo impostandole tutte false
     vector<bool> somme_possibile(somma, false);
@@ -73,7 +74,7 @@ int divcoins(vector<int>& coins) {
     // tranne 0, che rappresenta non prendere nessuna moneta
     somme_possibile[0] = true;
 
-    // per ogni moneta 
+    // per ogni moneta
     for(int coin : coins)
         for(int i = somma - 1; i >= 0; --i)
             if(somme_possibile[i]) { // iteriamo su ogni possibile somma

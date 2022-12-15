@@ -25,7 +25,6 @@ public:
             for(it=vehicleManager.begin(); it!=vehicleManager.end();it++){
                 auto owner = (*it).first;
                 cout << own->get_id() << " " << owner->get_id() << endl;
-                vehicleManager.
                 if(own->get_id() < owner->get_id())
                     vehicleManager.insert(it++, {own, veh});
             }

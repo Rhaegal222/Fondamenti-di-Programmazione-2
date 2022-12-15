@@ -29,13 +29,27 @@ loro somme
 // possibiliSomme[0] = true;
 
 #include <vector>
+#include <iostream>
 using namespace std;
 
 int main(int argc, char const* argv[])
 {
     vector<int> coins;
+
     // leggi coins
-    int somma = sum(coins);
+    {
+        int input;
+        while(true) {
+            cin >> input;
+            if(input == -1) break;
+            coins.push_back(input);
+        }
+    }
+   
+    // somma di tutte le monete
+    int somma;
+    for(int coin : coins)
+        somma += coin;
 
     bool possibiliSomme[somma + 1] = { false };
     possibiliSomme[0] = true;
@@ -50,7 +64,7 @@ int main(int argc, char const* argv[])
     bool trovato = false;
     for(i = somma / 2; i >= 0 && !trovato; --i) {
         if(possibiliSomme[i]) {
-            std::cout << "Minima Diff: " << (somma - i) - i << std::endl;
+            cout << "Minima Diff: " << (somma - i) - i << endl;
             trovato = true;
         }
     }
