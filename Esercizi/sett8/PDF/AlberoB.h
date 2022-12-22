@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////
-// AlberoB.h: the AlberoB template class.
-// Corso:	Algoritmi e Strutture Dati
-// Informatica @ Università della Calabria
+// AlberoB.h: the AlberoB template class.                           //
+// Corso:	Algoritmi e Strutture Dati                              //
+// Informatica @ Università della Calabria                          //
 //////////////////////////////////////////////////////////////////////
 
 #ifndef ALBEROB_H

@@ -128,27 +128,33 @@ int main(int argc, char const* argv[])
 
     cout << endl << endl;
 
+    AlberoB<char> A('a');
+    AlberoB<char> B('b');
+    AlberoB<char> C('c');
+    AlberoB<char> D('d');
+    AlberoB<char> E('e');
+    AlberoB<char> F('f');
+    AlberoB<char> G('g');
+    AlberoB<char> H('h');
+    AlberoB<char> I('i');
+    AlberoB<char> J('j');
+    AlberoB<char> O('o');
 
-    AlberoB<char> alberoParole('a');
-    AlberoB<char> aps('x');   // ax
-    AlberoB<char> apd('e');   // ae
-    alberoParole.insFiglio(SIN, aps);
-    alberoParole.insFiglio(DES, apd);
 
-    AlberoB<char> apss('t');  // axt
-    AlberoB<char> apsd('p');  // axp
-    aps.insFiglio(SIN, apss);
-    aps.insFiglio(DES, apsd);
-
-    AlberoB<char> apds('f');  // aef
-    AlberoB<char> apdd('g');  // aeg
-    // AlberoB<char> apdd('u');  // aeu
-    apd.insFiglio(SIN, apds);
-    apd.insFiglio(DES, apdd);
+    A.insFiglio(SIN, B);
+    A.insFiglio(DES, C);
+    B.insFiglio(SIN, E);
+    B.insFiglio(DES, D);
+    D.insFiglio(DES, J);
+    C.insFiglio(SIN, F);
+    F.insFiglio(DES, I);
+    E.insFiglio(SIN, G);
+    E.insFiglio(DES, H);
+    I.insFiglio(SIN, O);
 
 
     cout << "vocaliEConsonanti: ";
-    cout << (vocaliEConsonanti(alberoParole) ? "true\n" : "false\n");
+    cout << (vocaliEConsonanti(A) ? "true\n" : "false\n");
 
 
     return 0;
