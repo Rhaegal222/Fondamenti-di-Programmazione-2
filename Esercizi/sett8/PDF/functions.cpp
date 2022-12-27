@@ -10,11 +10,10 @@ void vectLivelli(const AlberoB<int>& tree, int level, vector<int>& levels){
     //cout << "";
     //for(auto i : levels) cout << i << " ";
     //cout << endl;
-    
+
     vectLivelli(tree.figlio(SIN), level+1, levels);
     vectLivelli(tree.figlio(DES), level+1, levels);
 }
-
 
 /*Esercizio 1*/
 template<typename T>
@@ -78,6 +77,7 @@ bool pariEDispari(const AlberoB<int>& tree, int level){
 /*Esercizio 6*/
 int sommaPath(const AlberoB<int>& tree, int &sum, int num){
     if(tree.nullo()) return sum;
+    
     if(tree.foglia()){
         num *= 10;
         num += tree.radice();
@@ -98,8 +98,8 @@ bool sommaLivello(const AlberoB<int>& tree, int k){
     for(auto i : levels){ 
         if(i>k) 
             return false;
-    return true;
     }
+    return true;
 }
 
 /*Esercizio 8*/
@@ -109,8 +109,8 @@ bool sommaLivelliAdiacenti(const AlberoB<int>& tree, int k){
     for(int i=0; i<levels.size()-1;i++){ 
         if(levels[i]+levels[i+1]>k) 
             return false;
-    return true;
     }
+    return true;
 }
 
 /*Esercizio 9*/
@@ -137,22 +137,11 @@ void vecToAlbero(const vector<T>& vect){
     }
 
     AlberoB<T> tree = nodes[0];
-    tree.insFiglio(SIN, nodes[1]);
-    tree.insFiglio(DES, nodes[2]);
 
-    for(int i=1; i<nodes.size()/2; i++){
-        if(i%2==0){
-            nodes[i].insFiglio(SIN, nodes[(i*2)+1]);
-            nodes[i].insFiglio(DES, nodes[(i*2)+2]);
-        }
-        else{
-            nodes[i].insFiglio(SIN, nodes[(i*2)+1]);
-            nodes[i].insFiglio(DES, nodes[(i*2)+2]);            
-        }
+    for(int i=0; i<nodes.size()/2; i++){
+        nodes[i].insFiglio(SIN, nodes[(i*2)+1]);
+        nodes[i].insFiglio(DES, nodes[(i*2)+2]);
     }
 
     stampaAlbero(tree, 0);
-
-    //return nodes[0];
-
 }

@@ -37,15 +37,15 @@ int main(){
     //NOVE.insFiglio(SIN, SEI);                     /*      / \       \       */    //8.V (k=20)
     //NOVE.insFiglio(DES, CINQUE);                  /*     6   5       -1     */    //9.V
 
-    A.insFiglio(SIN, B);                          /*             A          */    //2.-
-    A.insFiglio(DES, C);                          /*           /   \        */    //3.-
-    B.insFiglio(SIN, E);                          /*          B     C       */    //4.-
-    B.insFiglio(DES, D);                          /*         / \    /       */    //5.V
-    C.insFiglio(SIN, F);                          /*        E   D  F        */    //6.-
-    F.insFiglio(DES, I);                          /*       / \      \       */    //7.-
-    E.insFiglio(SIN, G);                          /*      G   H      I      */    //8.-
-    E.insFiglio(DES, H);                          /*                 /      */    //9.-
-    I.insFiglio(DES, O);                          /*                O       */  
+    //A.insFiglio(SIN, B);                          /*             A          */    //2.-
+    //A.insFiglio(DES, C);                          /*           /   \        */    //3.-
+    //B.insFiglio(SIN, E);                          /*          B     C       */    //4.-
+    //B.insFiglio(DES, D);                          /*         / \    /       */    //5.V
+    //C.insFiglio(SIN, F);                          /*        E   D  F        */    //6.-
+    //F.insFiglio(DES, I);                          /*       / \      \       */    //7.-
+    //E.insFiglio(SIN, G);                          /*      G   H      I      */    //8.-
+    //E.insFiglio(DES, H);                          /*                /       */    //9.-
+    //I.insFiglio(DES, O);                          /*               O        */  
 
     //A.insFiglio(SIN, B);                          /*             A          */    //2.-
     //A.insFiglio(DES, C);                          /*           /   \        */    //3.-
@@ -103,6 +103,7 @@ int main(){
     if(sommaLivello(DIECI, k)) cout << "Condizioni rispettate! " << "(k=" << k << ")" << endl;
     else cout << "Condizioni NON rispettate!" << "(k=" << k << ")" << endl;
     //for(auto i : levels) cout << i << " ";
+    //cout << endl;
 
     /*Esercizio 8*/
     k = 20;
