@@ -1,0 +1,122 @@
+- Exercise 1
+
+/*
+	Read a sequence of n integers, we want a subset of k elements whose sum is maximum.
+
+	If k = 1, it's like finding the maximum, O(n)
+	The navive solution for k > 1, is to find k times the maximum (removing the maximum each time), ~ O(k·n)
+
+	However, the optimal solution is to sort the array, then sum up the last k items, O(n log n) + O(k) = O(n log n).
+
+	In order to keep the indexes of the elements, the intended solution is to store the index in a std::pair along the value, then sort only based on the value of the pair.
+*/
+
+- Exercise 2
+We have an array of n elements, we want i, j such that A[i] + ... A[j] is maximum. 
+
+The naive solution,
+
+for (int i = 0; i < n; ++i) 
+	for (int j = 0; j < n; ++j)
+		for (int k=i; k<=j; ++k)
+			...code here to track the sum...
+
+runs in O(n^3), but we can solve the exercise in O(n) by applying dynamic programming.
+
+We can use this recurrence, let S[i] best the maximum subarray sum we can find in S[0..i]:
+
+				vvv 'extend a partial solution'
+	S[i] = max( S[i-1] + A[i], A[i] )
+								^^^ new solution
+
+if S[i] value comes from the first term, we are extending the previous solution. Else we are starting from scratch. The base case for the recurrence is S[0] = A[0].
+Example.
+
+	i   0 1 2  3 4   5  6  7
+	A = 1 3 4 -2 5 -20 10 12
+	
+	S[0] = A[0] = 1 (base case)    						       	   i = 0, j = 0
+	S[1] = max( S[0] + A[1], A[1] ) = max(4, 3) = 4				   i = 0, j = 1 
+	S[2] = max( S[1] + A[2], A[2] ) = max(8, 4) = 8 	           i = 0, j = 2 
+	S[3] = max( S[2] + A[3], A[3] ) = max(6,-2) = 6		           i = 0, j = 3
+	S[4] = max( S[3] + A[4], A[4] ) = max(11,5) = 11               i = 0, j = 4
+	S[5] = max( S[4] + A[5], A[5] ) = max(-9,-20) = -9,            i = 0, j = 5
+	S[6] = max( S[5] + A[6], A[6] ) = max(1, 10) = 10		       i = 6, j = 6
+	S[7] = max( S[6] + A[7], A[7] ) = max(22, 12) = 22             i = 6, j = 7 (*)
+
+- Exercise 3
+There's a theorem from graph theory that says that all graphs, whose max node degree is D, can be (D+1)-colored. The solution can be found in a greedy approach:
+
+For all nodes in the graph
+	Compute the list of available colors (all D+1 colors minus the ones the neighbours are already using)
+	Pick the first color from the available ones
+
+- Exercise 6
+
+We want to compute the longest palindromic subsequence contained in s. We use a dynamic programming approach. Let S[i][j] be the length of the longest palidnromic subsequence contained in the string s[i..j].
+
+Consider the recurrence:
+	Base cases:
+		/*        i
+				PANNA
+                  j
+		*/
+		S[i][i] = 1
+
+
+		/*           j
+                  PANNA
+                      i
+		*/
+		S[i][j] = 0 if i > j 
+
+	Subproblems:
+		/*       i
+				PANNA
+					j
+		*/
+		S[i][j] = 2 + S[i+1][j-1] if s[i] == s[j]
+
+		/*       i
+				PANNA
+				   j
+		*/
+		S[i][j] = max( S[i+1][j], S[i][j-1] ) if s[i] != s[j]
+
+
+		The optimal solution for the problem is stored in S[0][s.size()-1]. Here is an example with the string PANNA.
+		  i=  	0 	1	2		3		4
+		s[i]=	P 	A 	N		N		A
+
+		? is not yet computed answers, 0/1 are base cases.
+				
+0		P		1  		?		?		?		?
+1		A		0		1		?		?		?
+2		N		0		0		1		?   	?
+3		N		0		0		0		1		?
+4		A		0		0		0		0		1
+		              
+		The optimal solution is S[0][4], which we show how to compute
+
+		S[0][4] = max(S[1][4], S[0][3])
+			S[1][4] = 2 + S[2][3]
+				S[2][3] = 2 + S[3][2]
+					S[3][2] = 0
+				S[2][3] = 2 + 0 = 2
+			S[1][4] = 2 + 2 = 4
+		S[0][4] = max(4, S[0][3]) = max(4, 2) = 4
+										   ^ check below
+			
+			S[0][3] = max(S[1][3], S[0][2]) = max(2, 1) = 2
+				S[1][3] = max(S[2][3], S[1][2])
+					S[2][3] = 2 + S[3][2] = 2
+					S[1][2] = max(S[2][2], S[1][1]) = 1
+				S[1][3] = max(2, 1) = 2
+			
+		
+		
+		Difference with exercise 1: This is "top-down" dynamic programming, there are recursive calls up to the base cases, then we build the solution from the sub-solutions of subproblems.
+
+		In exercise 1, it was "bottom-up" dynamic programming, were we can compute the solution to the problem "building it up" from the base cases.
+*/
+
