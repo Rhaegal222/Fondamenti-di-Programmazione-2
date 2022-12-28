@@ -1,6 +1,6 @@
 #include <iostream>
+#include "Grafo.h"
 #include "GrafoNonOrientato.h"
-#include "..\..\..\Implementazioni\Grafo\non_orientato\GrafoNonOrientato.h"
 using namespace std;
 
 void stampaGrafo(const GrafoNonOrientato& g);
