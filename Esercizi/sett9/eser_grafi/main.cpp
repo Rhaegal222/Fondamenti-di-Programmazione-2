@@ -34,8 +34,6 @@ vector<int> bfs(int s, const Grafo& g)
     return prec;
 }
 
-
-
 void ricostruisciCammino(int s, int t, const vector<int>& p, queue<int>& cammino) {
     if(s == t) cammino.push(s);
     else if(t == -1) return;
@@ -73,7 +71,6 @@ int main(int argc, char const* argv[])
         cout << q.front() << endl;
         q.pop();
     }
-
 
     return 0;
 }

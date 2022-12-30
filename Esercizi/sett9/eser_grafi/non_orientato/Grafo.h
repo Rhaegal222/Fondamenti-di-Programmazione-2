@@ -32,9 +32,6 @@ public:
         this->init(n);
     }
 
-    vector<vector<bool>> mat_adiacenza()const{return this->archi;}
-
-    //Restituisce il grado del nodo 'x'
 	unsigned grado(unsigned x) const {
 		unsigned g = 0;
 		for (int i = 0; i < n(); ++i) {
@@ -43,8 +40,6 @@ public:
 		return g;
 	}
 
-    // Restituisce il grado dei nodi
-    // i-esimo valore é il grado del nodo 'i'
 	vector<unsigned> gradi() const {
 		vector<unsigned> gs(n(), 0);
 		for (int i = 0; i < n(); ++i) {
@@ -55,7 +50,6 @@ public:
 		return gs;
 	}
 
-    // Restituisce il vicinato del nodo 'x'
 	vector<unsigned> vicinato(unsigned x) const {
 		vector<unsigned> nb;
 		for (int i = 0; i < n(); ++i) {
