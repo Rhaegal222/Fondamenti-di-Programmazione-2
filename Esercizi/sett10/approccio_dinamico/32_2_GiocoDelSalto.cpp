@@ -15,15 +15,9 @@ int main(int argc, char const* argv[])
     vector<int> nums = { 1,4,3,5,10,0,1,1,9,7,6,1,2,3,4,1,2,4,0,3,5,1,2,3,1,5,6,7,0,9,7,8,9,0,3,2,4,1,5,2,1,2,3,4,7,8,9,6,5,3,2,0,2,1,3,4,0,3,5,6,2,3,0,1,2 };
 
     cout << numeroMinimoSalti(nums) << endl;
+
+    return 0;
 };
-
-
-
-
-
-
-
-
 
     // [5, 2, 1, 6, 2]
     // salti riichiesti :
@@ -34,11 +28,6 @@ int main(int argc, char const* argv[])
     //     it - 5 : [1, 2, 2, 1, 0]
     //     ^
     //     output
-
-
-return 0;
-}
-
 
 int numeroMinimoSalti(const vector<int>& nums) {
 

@@ -2,7 +2,10 @@
 #include "GrafoNonOrientato.h"
 
 #include <queue>
+#include <vector>
+#include <List>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -168,10 +171,32 @@ bool proprieta_2(const Grafo& g, vector<int> pesi){
         //if((g.grado(i)*pesi[i])<=somma) return false;
     }
     return true;
+}
 
 /*Esercizio 11*/
+int dijkstra_node_to_node(const Grafo& g, unsigned src, unsigned dest, const vector<vector<unsigned>>& pesi){
+    vector<vector<pair<unsigned, unsigned>>> percorsi; //{}
+    vector<bool> visitati(g.n(), false); visitati[src]=true;//{true,false,false,false}
+    vector<unsigned> vicinato = g.vicinato(src);//{1,2}
+    queue<unsigned> temp; for(auto x:vicinato) temp.push(x); //costruisco una coda con il vicinato di src
+    list<queue<unsigned>> daVisitare; daVisitare.push_front(temp); //aggiungo alla coda principale la coda generata da src
+    pair<unsigned, unsigned> coppia; coppia.first=src; //inizializzo una coppia di nodi e inserisco il nodo src nella coppia
+    vector<pair<unsigned, unsigned>>percorso; //inizializzo un vettore contente le coppie di nodi
+    percorso.push_back(coppia); //aggiungo la coppia di nodi al percorso
 
+    while(visitati[dest] || !daVisitare.empty()){
+        if(visitati[daVisitare.front().front()]) daVisitare.front().pop();
+        else{
+        visitati[daVisitare.front().front()] = true; //setto che il nodo é stato visitato
+        vicinato = g.vicinato(daVisitare.front().front()); //assegno il vicinato del nuovo nodo
+        queue<unsigned> temp; for(auto x:vicinato) temp.push(x); //creo una nuova coda
+        percorso.back().second = daVisitare.front().front(); //aggiungo il secondo nodo alla coppia
+        daVisitare.front().pop(); daVisitare.push_front(temp); //cancello il nodo appena visitato dalla vecchia coda e aggiungo la nuova coda
+        }
+    }
 }
+
+int dijkstra_single_source_all_nodes(const Grafo& g, unsigned src, const vector<vector<unsigned>>& pesi){}
 
 int	main(){
     Grafo og(6);
@@ -180,6 +205,13 @@ int	main(){
     og(2,3,true);og(2,4,true); //C->E; C->D
     og(3,5,true); //E->F;
     og(4,5,true); //D->F;
+
+    vector<vector<unsigned>> weights = {{0,5,0,0,0,0},
+                                        {0,0,4,3,0,0},
+                                        {0,0,0,2,6,0},
+                                        {0,0,0,0,0,1},
+                                        {0,0,0,0,0,7},
+                                        {0,0,0,0,0,0}};
 
     Grafo og1(2);
     og1(0,1,true);
@@ -260,9 +292,6 @@ int	main(){
 
     /*Esercizio 10*/
     cout << "Esercizio fatto ma non abbiamo i testcase" << endl;
-    return 0;
 
     /*Esercizio 11*/
-    cout << "Esercizio fatto ma non abbiamo i testcase" << endl;
-    return 0;
 }

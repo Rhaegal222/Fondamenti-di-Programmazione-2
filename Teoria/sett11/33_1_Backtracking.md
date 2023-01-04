@@ -22,10 +22,7 @@ _______
 l'algoritmo cerca di assegnare il primo colore disponibile a ogni nazione, quando questo giunge ad una soluzione inammissibile, torna indietro provando la prossima scelta.
 Rispetto al brute force ci permette di risparmiare molto tempo non andando a evalutare le soluzioni derivate da scelte inammissibili.
 
-l'algoritmo si pone bene per problemi decisionali e per problemi di ottimizzazione
-
-
-in questo problema:
+l'algoritmo si pone bene per problemi decisionali e per problemi di ottimizzazione in questo problema:
 
 modello i confini come una matrice (tipo grafo)
 
