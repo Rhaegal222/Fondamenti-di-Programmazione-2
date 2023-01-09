@@ -174,29 +174,50 @@ bool proprieta_2(const Grafo& g, vector<int> pesi){
 }
 
 /*Esercizio 11*/
-int dijkstra_node_to_node(const Grafo& g, unsigned src, unsigned dest, const vector<vector<unsigned>>& pesi){
-    vector<vector<pair<unsigned, unsigned>>> percorsi; //{}
-    vector<bool> visitati(g.n(), false); visitati[src]=true;//{true,false,false,false}
-    vector<unsigned> vicinato = g.vicinato(src);//{1,2}
-    queue<unsigned> temp; for(auto x:vicinato) temp.push(x); //costruisco una coda con il vicinato di src
-    list<queue<unsigned>> daVisitare; daVisitare.push_front(temp); //aggiungo alla coda principale la coda generata da src
-    pair<unsigned, unsigned> coppia; coppia.first=src; //inizializzo una coppia di nodi e inserisco il nodo src nella coppia
-    vector<pair<unsigned, unsigned>>percorso; //inizializzo un vettore contente le coppie di nodi
-    percorso.push_back(coppia); //aggiungo la coppia di nodi al percorso
+struct NodeCost {
+	const unsigned node;
+	const unsigned cost;
 
-    while(visitati[dest] || !daVisitare.empty()){
-        if(visitati[daVisitare.front().front()]) daVisitare.front().pop();
-        else{
-        visitati[daVisitare.front().front()] = true; //setto che il nodo é stato visitato
-        vicinato = g.vicinato(daVisitare.front().front()); //assegno il vicinato del nuovo nodo
-        queue<unsigned> temp; for(auto x:vicinato) temp.push(x); //creo una nuova coda
-        percorso.back().second = daVisitare.front().front(); //aggiungo il secondo nodo alla coppia
-        daVisitare.front().pop(); daVisitare.push_front(temp); //cancello il nodo appena visitato dalla vecchia coda e aggiungo la nuova coda
-        }
-    }
+	NodeCost(unsigned a, unsigned b) : node(a), cost(b){}
+
+	bool operator<(const NodeCost& b) const {
+		return cost >= b.cost;
+	}
+};
+
+pair<vector<unsigned>,vector<unsigned>> dijkstra_single_source_all_nodes(const Grafo& g, unsigned src, const vector<vector<unsigned>>& pesi) {
+	// Queue di (nodo, costo) da esplorare
+	queue<NodeCost> da_visitare;
+
+	// costs[i] è il costo per raggiungere i da src
+	// inizializzato a +inf
+	vector<unsigned> costs(g.n(), numeric_limits<unsigned>::max());
+	costs[src] = 0;
+
+	// parent[i] = j quando nel percorso più breve per andare in j passiamo da i
+	vector<unsigned> parent(g.n(), 0);
+
+	// la visita parte da src, a costo 0 
+	da_visitare.push(NodeCost(src, 0));
+
+	while (not da_visitare.empty()) {
+		NodeCost top = da_visitare.front();
+		cout << "Sto visitando il nodo " << top.node << " a prezzo " << top.cost << endl; 
+
+		da_visitare.pop();
+
+		for (unsigned v: g.vicinato(top.node)){
+			if (top.cost + pesi[top.node][v] < costs[v]){
+				cout << "Inserisco il nodo " << v << " a prezzo " << top.cost + pesi[top.node][v] << endl; 
+
+				da_visitare.push({v, top.cost+pesi[top.node][v]});
+				parent[v] = top.node;
+				costs[v] = top.cost + pesi[top.node][v];
+			}
+		}
+	}
+	return make_pair(costs, parent);
 }
-
-int dijkstra_single_source_all_nodes(const Grafo& g, unsigned src, const vector<vector<unsigned>>& pesi){}
 
 int	main(){
     Grafo og(6);
