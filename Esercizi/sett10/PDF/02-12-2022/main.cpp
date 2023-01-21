@@ -21,6 +21,7 @@ int main()
         cin >> x;
         seq.push_back(make_pair(x, i));
     }
+    
     sort(seq.begin(), seq.end(), bigger_than);
     
     for(int i=0;i<k;i++){

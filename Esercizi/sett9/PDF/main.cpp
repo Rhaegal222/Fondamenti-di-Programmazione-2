@@ -185,40 +185,6 @@ struct NodeCost {
 	}
 };
 
-pair<vector<unsigned>,vector<unsigned>> dijkstra_single_source_all_nodes(const Grafo& g, unsigned src, const vector<vector<unsigned>>& pesi) {
-	// Queue di (nodo, costo) da esplorare
-	queue<NodeCost> da_visitare;
-
-	// costs[i] è il costo per raggiungere i da src
-	// inizializzato a +inf
-	vector<unsigned> costs(g.n(), numeric_limits<unsigned>::max());
-	costs[src] = 0;
-
-	// parent[i] = j quando nel percorso più breve per andare in j passiamo da i
-	vector<unsigned> parent(g.n(), 0);
-
-	// la visita parte da src, a costo 0 
-	da_visitare.push(NodeCost(src, 0));
-
-	while (not da_visitare.empty()) {
-		NodeCost top = da_visitare.front();
-		cout << "Sto visitando il nodo " << top.node << " a prezzo " << top.cost << endl; 
-
-		da_visitare.pop();
-
-		for (unsigned v: g.vicinato(top.node)){
-			if (top.cost + pesi[top.node][v] < costs[v]){
-				cout << "Inserisco il nodo " << v << " a prezzo " << top.cost + pesi[top.node][v] << endl; 
-
-				da_visitare.push({v, top.cost+pesi[top.node][v]});
-				parent[v] = top.node;
-				costs[v] = top.cost + pesi[top.node][v];
-			}
-		}
-	}
-	return make_pair(costs, parent);
-}
-
 int	main(){
     Grafo og(6);
     og(0,1,true); //A->B

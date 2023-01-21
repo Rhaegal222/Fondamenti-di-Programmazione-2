@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void DFS(Grafo& g, vector<vector<unsigned>>& weights, vector<bool> visited, int nodo, int dest, int& cost_min, int cost_act){
+void dijkstra_single_nodes_single_source(Grafo& g, vector<vector<unsigned>>& weights, vector<bool> visited, int nodo, int dest, int& cost_min, int cost_act){
     if(nodo==dest && cost_min>cost_act){
         cout << "\nNuovo Percorso: " << endl;
         cost_min = cost_act;
@@ -21,7 +21,7 @@ void DFS(Grafo& g, vector<vector<unsigned>>& weights, vector<bool> visited, int 
         if(!visited[x]){
             cost_act += weights[nodo][x];
             cout << "Partenza: " << nodo << " Arrivo: " << x << " Costo: " << cost_act << endl;
-            DFS(g, weights, visited, x, dest, cost_min, cost_act);
+            dijkstra_single_nodes_single_source(g, weights, visited, x, dest, cost_min, cost_act);
             cost_act -= weights[nodo][x];
         }
     }
@@ -66,7 +66,7 @@ int main(int argc, char const *argv[])
 
     int costo = 1000000;
     cout << "Calcolo Percorso: " << endl;
-    DFS(og2, weights, visited, 0, 5, costo, 0);
+    dijkstra_single_nodes_single_source(og2, weights, visited, 0, 5, costo, 0);
     cout << "Costo minimo: " << costo << endl;
 
   list<int*> lista;
