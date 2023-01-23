@@ -31,8 +31,8 @@ bool check(vector<string>& P, vector<vector<string>>& L){
 }
 /*Combinazioni senza ripetizione*/
 bool esercizio4(vector<string>& S, vector<vector<string>>& L, vector<string> P, int start, int index, int& q){
+        //cout << " {"; for(auto x:P) cout << x << ", "; cout << "}" << endl;
     if(index == q){
-        //for(auto x:P) cout << x << " "; cout << endl;
         if(check(P, L)){ //se la dimensione della combinazione é quella richiesta verifico la condizione
             //for(auto x:P) cout << x << " "; cout << endl;
             return true;

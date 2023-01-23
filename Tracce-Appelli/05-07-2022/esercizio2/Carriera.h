@@ -46,8 +46,8 @@ public:
             nomiEsami = replace_nomiEsami;
         }
     
-        nomiEsami[numAppelli] = nome;
-        esiti[numAppelli] = esito;
+        nomiEsami[numAppelli-1] = nome;
+        esiti[numAppelli-1] = esito;
     }
     
     void rimuoviUltimoAppello(){

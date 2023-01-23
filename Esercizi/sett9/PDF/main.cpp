@@ -173,18 +173,6 @@ bool proprieta_2(const Grafo& g, vector<int> pesi){
     return true;
 }
 
-/*Esercizio 11*/
-struct NodeCost {
-	const unsigned node;
-	const unsigned cost;
-
-	NodeCost(unsigned a, unsigned b) : node(a), cost(b){}
-
-	bool operator<(const NodeCost& b) const {
-		return cost >= b.cost;
-	}
-};
-
 int	main(){
     Grafo og(6);
     og(0,1,true); //A->B
@@ -279,6 +267,4 @@ int	main(){
 
     /*Esercizio 10*/
     cout << "Esercizio fatto ma non abbiamo i testcase" << endl;
-
-    /*Esercizio 11*/
 }
