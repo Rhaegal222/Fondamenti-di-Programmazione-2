@@ -22,12 +22,14 @@ public:
         delete[]esiti;
         delete[]nomiEsami;
     }
+
     Carriera operator=(Carriera& c){
         this->esiti=c.esiti;
         this->nomiEsami=c.nomiEsami;
         this->numAppelli=c.numAppelli;
         return *this;
     }
+    
     void aggiungiTentativo(string nome, bool esito){
         numAppelli++;
         

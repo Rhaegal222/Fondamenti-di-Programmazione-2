@@ -10,8 +10,8 @@ using namespace std;
     s: 0 di default
 */
 
-template<class T> void Combinazioni_Semplici(vector<T>& I, int k, vector<T> C, int s){
-    if(k==-1 && C.size()>0){cout << "{ "; for(auto x:C) cout << x << " "; cout << "}" << endl;}
+template<class T> void Combinazioni_Semplici(vector<T>& I, int k, vector<T>& C, int s){
+    if(k==-1 && C.size()>0){cout << " { "; for(auto x:C) cout << x << " "; cout << "}" << endl;}
 
     if(C.size()==k){cout << "{ "; for(auto x:C) cout << x << " "; cout << "}" << endl;}
 
