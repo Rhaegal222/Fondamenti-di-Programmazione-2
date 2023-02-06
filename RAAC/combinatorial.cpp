@@ -27,6 +27,6 @@ int main()
     /* Combinazioni Semplici */
     vector<string> S{"a","b","c"};
     vector<string> C;
-    Combinazioni_Semplici(S,2,C,0);
+    Combinazioni_Semplici(S,-1,C,0);
     return 0;
 }

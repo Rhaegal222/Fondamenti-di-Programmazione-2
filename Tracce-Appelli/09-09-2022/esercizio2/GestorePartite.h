@@ -51,7 +51,6 @@ public:
                 best.first = Squadre[i];                
             }
         }
-
         return best.first;
     }
 
