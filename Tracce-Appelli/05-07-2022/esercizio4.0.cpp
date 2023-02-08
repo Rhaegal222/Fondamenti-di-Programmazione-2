@@ -5,12 +5,20 @@
 
 using namespace std;
 
-bool isComplete(vector<vector<string>>& L, vector<string>& C, int& q){
-    if(C.size()<q) return false;
-    //for(auto y:C)cout<<y<<" ";cout<<endl;
+void next(int& index){
+    index++;
+}
+
+void remove(vector<string>& C){
+    C.pop_back();
+}
+
+bool isComplete(vector<vector<string>>& L, vector<string>& C, int& k){
+    if(C.size()<k) return false;
+    for(auto y:C)cout<<y<<" ";cout<<endl;
     vector<bool> condL(L.size(), false); //inizializzo un vettore tutto falso che indica le stringhe che non violano la condizione
-    for(int i=0; i<L.size(); i++){ //scorre le liste di stringhe
-        vector<bool> condC(L[i].size(), false); //inizializzo un vettore tutto falso che indica quante leggere uguali ci sono nella combinazione generata (P)
+    for(int i=0; i<L.size(); i++){
+        vector<bool> condC(L[i].size(), false);
         for(int j=0; j<L[i].size(); j++){ // prendo la lettera della stringa
             for(int k=0; k<C.size(); k++){ // prendo la lettera in P
                 if(L[i][j]==C[k]) condC[j] = true; // confronto se la lettera della stringa i == alla lettera della stringa P
@@ -24,22 +32,24 @@ bool isComplete(vector<vector<string>>& L, vector<string>& C, int& q){
     return true;
 }
 
+void add(vector<string>& S, vector<string>& C, int index){
+    C.push_back(S[index]);
+}
+
 bool canAdd(vector<string>& S, vector<string>& C, int& index){
     if(find(C.begin(), C.end(), S[index]) == C.end()) return true;
     return false;
 }
 
-bool esercizio4(vector<string>& S, vector<vector<string>>& L, vector<string>& C, int& q){
+bool esercizio4(vector<string>& S, vector<vector<string>>& L, vector<string>& C, int& k){
     int index = 0;
-    if(!(C.empty())) index = find(S.begin(),S.end(),C.back()) - S.begin();
     while(index < S.size()){
         if(canAdd(S, C, index)){
-            C.push_back(S[index]);
-            if(isComplete(L, C, q)) return true;
-            if(esercizio4(S,L,C,q)) return true; 
-            C.pop_back();
+            add(S, C, index);
+            if(isComplete(L, C, k)) return true;
+            else if(esercizio4(S,L,C,k)) return true; remove(C); next(index);
         }
-        index++;
+        else next(index);
     }
     return false;
 }
