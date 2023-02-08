@@ -6,7 +6,7 @@ using namespace std;
 
 bool isComplete(vector<int>& sol, vector<vector<int>>& listaInsiemi, int& k){
     if(sol.size() < k) return false;
-    for(auto x:sol) cout<<x<< " "; cout<<endl;
+    //for(auto x:sol) cout<<x<< " "; cout<<endl;
     for(auto x:listaInsiemi){ //scorre il vettore delle stringhe
         bool cond = false;
         for(auto y:sol) if(find(x.begin(), x.end(), y)!=x.end()) cond = true; //scorre la combinazione e controlla che il carattere selezionato è presente nella stringa
