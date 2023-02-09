@@ -32,15 +32,13 @@ bool canAdd(int index, vector <int> sol){
     return false;
 }
 
-bool esercizio4(vector<vector<int>>& S, vector<int>& H, int& k, int& n, int& cont){
-    cont++;
+bool esercizio4(vector<vector<int>>& S, vector<int>& H, int& k, int& n){
     int index = 0;
-    if(!(H.empty())) for(auto x:H) if(x>index) index = x;
     while(index < n){
         if(canAdd(index, H)){
             add(index, H);
             if(isComplete(H, S, k)) return true;
-            if(esercizio4(S,H,k,n,cont)) return true;
+            if(esercizio4(S,H,k,n)) return true;
             remove(H);
         }
         next(index, n);
@@ -52,7 +50,7 @@ int main(){
     vector<vector<int>> S{{1, 2, 3}, {4, 3, 5}, {1, 6}};
     vector<int> H;
     int k = 3, n = 5, cont = 0;
-    if(esercizio4(S,H,k,n, cont)) cout << "SI"; else cout << "NO"; cout << endl;
+    if(esercizio4(S,H,k,n)) cout << "SI"; else cout << "NO"; cout << endl;
     cout << cont;
     
     return 0;

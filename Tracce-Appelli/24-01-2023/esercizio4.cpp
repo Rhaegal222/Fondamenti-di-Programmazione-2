@@ -22,7 +22,7 @@ bool canAdd(int index, vector <int> sol){
 
 bool esercizio4(vector<vector<int>>& S, vector<int>& H, int& k, int& n){
     int index = 0;
-    if(!(H.empty())) index = H.back();
+    if(!(H.empty())) index = H.back(); //evita la ripetizione delle combinazioni
     while(index < n){
         if(canAdd(index, H)){
             H.push_back(index);
