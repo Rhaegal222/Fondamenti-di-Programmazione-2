@@ -47,9 +47,9 @@ class MedianaVettore : public StatisticheVettore{
 };
 
 int main(){
-    MediaVettore* v1 = new MediaVettore;
-    ModaVettore* v2 = new ModaVettore;
-    MedianaVettore* v3 = new MedianaVettore;
+    StatisticheVettore* v1 = new MediaVettore;
+    StatisticheVettore* v2 = new ModaVettore;
+    StatisticheVettore* v3 = new MedianaVettore;
 
     vector<int> vect {3,1,2,1};
     vector<StatisticheVettore*> StatVect;

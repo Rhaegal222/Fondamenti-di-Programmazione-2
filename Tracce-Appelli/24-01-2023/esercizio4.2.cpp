@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
 using namespace std;
 
 bool isComplete(vector<vector<int>>& S, vector<int>& H, int& k){
@@ -15,22 +14,12 @@ bool isComplete(vector<vector<int>>& S, vector<int>& H, int& k){
     return true; //la condizione è verificata
 }
 
-bool canAdd(int index, vector <int> sol){
-    if(find(sol.begin(), sol.end(), index) == sol.end()) return true; // se nella soluzione non è presente un elemento uguale lo aggiunge
-    return false;
-}
-
-bool esercizio4(vector<vector<int>>& S, vector<int>& H, int& k, int& n){
-    int index = 0;
-    if(!(H.empty())) index = H.back();
-    while(index < n){
-        if(canAdd(index, H)){
-            H.push_back(index);
-            if(isComplete(S, H, k))return true;
-            if(esercizio4(S,H,k,n)) return true;
-            H.pop_back();
-        }
-        index++;
+bool esercizio4(vector<vector<int>>& S, vector<int>& H, int& k, int& n, int index){
+    for(int i=index; i<n; i++){
+        H.push_back(i);
+        if(isComplete(S, H, k)) return true;
+        if(esercizio4(S, H, k, n, i+1)) return true;
+        H.pop_back();
     }
     return false;
 }
@@ -38,9 +27,9 @@ bool esercizio4(vector<vector<int>>& S, vector<int>& H, int& k, int& n){
 int main(){
     vector<vector<int>> S{{1, 2, 3}, {4, 3, 5}, {5, 6}};
     vector<int> H;
-    int k = 1, n = 5;
+    int k = 3, n = 5;
 
-    if(esercizio4(S,H,k,n)) cout << "SI"; else cout << "NO"; cout << endl;
-    
+    if(esercizio4(S,H,k,n,0)) cout << "SI"; else cout << "NO"; cout << endl;
+
     return 0;
 }
