@@ -5,10 +5,9 @@
 using namespace std;  
 
 int main() 
-
 { 
-   list<int> l{1,2,3,4};
-   for(auto x:l){
-      cout << x;
-   }
+   int a = 0;
+   cout << a+1 << endl; // stampa il a incerementato senza cambiarne il valore
+   cout << a++ << endl; // stampa il valore e poi incrementa a
+   cout << ++a << endl; // incrementa a e poi lo stampa
 }

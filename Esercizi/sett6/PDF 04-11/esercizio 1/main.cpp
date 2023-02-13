@@ -1,6 +1,6 @@
 #include "DocumentoMP3.h"
 #include "DocumentoPDF.h"
-#include "GestoreDocumenti.cpp"
+#include "GestoreDocumenti.h"
 #include <iostream>
 
 using namespace std;
