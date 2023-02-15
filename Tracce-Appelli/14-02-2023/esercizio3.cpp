@@ -2,7 +2,7 @@
 #include "nodes.cpp"
 using namespace std;
 
-bool esercizio3(const AlberoB<int>& tree, int sum){ //mancava il tipo di dato dell'albero e const
+bool esercizio3(const AlberoB<int>& tree, int sum){ //AlberoB& tree mancava il tipo di dato dell'albero e const
     if(tree.nullo()) return false;
     sum += tree.radice(); // ho messo questa a rigo 8 invece che 7
     if(tree.foglia() && sum == 0) return true;
