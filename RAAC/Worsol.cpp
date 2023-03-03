@@ -11,7 +11,7 @@ using namespace std;
 */
 
 template<class T> bool isComplete(vector<T>& Parola){
-    if(Parola.size()==5 return true)
+    if(Parola.size()==5) return true
 }
 
 
