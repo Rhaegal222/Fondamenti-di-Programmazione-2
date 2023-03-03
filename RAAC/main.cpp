@@ -6,8 +6,18 @@ using namespace std;
 
 int main() 
 { 
-   int a = 0;
-   cout << a+1 << endl; // stampa il a incerementato senza cambiarne il valore
-   cout << a++ << endl; // stampa il valore e poi incrementa a
-   cout << ++a << endl; // incrementa a e poi lo stampa
+   int x = 0;
+
+   switch (x)
+   {
+   case 1:
+      cout<<"x = 1";
+      break;
+   case 2:
+      cout<<"x = 1";
+      break;
+   case 3:
+      cout<<"x = 1";
+      break;
+   }
 }
